@@ -24,7 +24,7 @@
     <Compile Include="source\config.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="source\ai.py" />
+    <Compile Include="source\api.py" />
     <Compile Include="source\main.py">
       <SubType>Code</SubType>
     </Compile>
