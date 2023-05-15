@@ -28,6 +28,39 @@ def get_dad_joke():
         error = "Error:" + str(response.status_code) + str(response.text)
         return error
 
+def get_fact():
+    limit = 1
+    api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
+    response = requests.get(api_url, headers={'X-Api-Key': AI_API_KEY})
+    if response.status_code == requests.codes.ok:
+        data = response.json()
+        for p in data:
+            return p['fact']
+    else:
+        error = "Error:" + str(response.status_code) + str(response.text)
+        return error
+
+def get_quote():
+    api_url = 'https://api.api-ninjas.com/v1/quotes'
+    response = requests.get(api_url, headers={'X-Api-Key': AI_API_KEY})
+    if response.status_code == requests.codes.ok:
+        data = response.json()
+        for p in data:
+            return '"' + p['quote'] + '"\n- ' + p['author']
+    else:
+        error = "Error:" + str(response.status_code) + str(response.text)
+        return error
+
+def get_mood(text):
+    api_url = 'https://api.api-ninjas.com/v1/sentiment?text={}'.format(text)
+    response = requests.get(api_url, headers={'X-Api-Key': AI_API_KEY})
+    if response.status_code == requests.codes.ok:
+        data = response.json()
+        return data['sentiment']
+    else:
+        error = "Error:" + str(response.status_code) + str(response.text)
+        return error
+
 def get_rword():
     api_url = 'https://api.api-ninjas.com/v1/randomword'
     response = requests.get(api_url, headers={'X-Api-Key': AI_API_KEY})

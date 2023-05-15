@@ -19,6 +19,8 @@ def image_handle(msg):
     file_info = bot.get_file(fileID)
     downloaded_file = bot.download_file(file_info.file_path)
     image_info = get_image_info(downloaded_file)
+    if image_info == '':
+        image_info = 'I can`t tell what is in the photo :('
     bot.send_message(msg.chat.id, image_info, parse_mode=None)
 
 @bot.message_handler()
@@ -29,6 +31,10 @@ def text_handle(msg):
         bot.send_message(msg.chat.id, get_dad_joke(), parse_mode=None)
     elif msg.text == "word" or msg.text == "rword" or msg.text == "Rword":
         bot.send_message(msg.chat.id, get_rword(), parse_mode=None)
+    elif msg.text == "fact" or msg.text == "Fact":
+        bot.send_message(msg.chat.id, get_fact(), parse_mode=None)
+    elif msg.text == "quote" or msg.text == "Quote":
+        bot.send_message(msg.chat.id, get_quote(), parse_mode=None)
     elif msg.text == "photo" or msg.text == "Photo":
         get_image()
         photo = open('img.jpg', 'rb')
@@ -37,7 +43,7 @@ def text_handle(msg):
         if get_definition(msg.text) != None:
             bot.send_message(msg.chat.id, get_definition(msg.text)[:1000], parse_mode=None)
         else:
-            bot.send_message(msg.chat.id, 'Unknown command! Enter /help to get command list.', parse_mode=None)
+            bot.send_message(msg.chat.id, get_mood(msg.text), parse_mode=None)
 
 def start_bot():
     bot.polling(non_stop=True)
