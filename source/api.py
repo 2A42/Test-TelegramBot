@@ -56,7 +56,18 @@ def get_mood(text):
     response = requests.get(api_url, headers={'X-Api-Key': AI_API_KEY})
     if response.status_code == requests.codes.ok:
         data = response.json()
-        return data['sentiment']
+        if data['sentiment'] == 'NEGATIVE':
+            return '\N{crying face}'
+        elif data['sentiment'] == 'WEAK_NEGATIVE':
+            return '\N{worried face}'
+        elif data['sentiment'] == 'NEUTRAL':
+            return '\N{thinking face}'
+        elif data['sentiment'] == 'WEAK_POSITIVE':
+            return '\N{slightly smiling face}'
+        elif data['sentiment'] == 'POSITIVE':
+            return '\N{grinning face with smiling eyes}'
+        else:
+            return '\N{turtle}'
     else:
         error = "Error:" + str(response.status_code) + str(response.text)
         return error
