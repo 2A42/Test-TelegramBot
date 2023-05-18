@@ -22,7 +22,7 @@ def help(msg):
     4. [fact] provides you with random fact \N{check mark}\n\
     5. [photo] provides you with random image \N{sunrise}\n\n\
     You also can:\n\
-    6. Send your own picture so the AI could detect objects on it.\N{grapes}\n\
+    6. Send your own picture so the AI could detect objects on it \N{grapes}\n\
     7. Send any word to get it`s definition \N{open book}\n\
     8. Send anything to mood check yourself \N{turtle}'
     bot.send_message(msg.chat.id, content, parse_mode=None)
